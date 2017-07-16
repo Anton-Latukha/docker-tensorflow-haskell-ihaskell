@@ -19,11 +19,15 @@ pip3 install -r requirements.txt
 stack setup
 stack install gtk2hs-buildtools
 stack install --fast
-stack exec ihaskell -- install --stack
-<!-- stack exec jupyter -- notebook -->
+# Install Tensorflow bindings & it's deps (https://github.com/tensorflow/haskell)
+stack install tensorflow tensorflow-proto tensorflow-records tensorflow-test tensorflow-opgen tensorflow-ops tensorflow-logging tensorflow-core-ops tensorflow-records-conduit snappy snappy-framing 
 
+stack exec ihaskell -- install --stack
+
+<!-- stack exec jupyter -- notebook -->
 stack exec jupyter -- notebook --ip=172.17.0.2 --allow-root
 
+---
 <!-- Tensorflow -->
 mkdir -p "$HOME"/tensorflow
 apt-get install -y libcupti-dev
@@ -36,6 +40,8 @@ source "$HOME"/tensorflow/bin/activate
 <!-- Using CPU -->
 pip3 install --upgrade tensorflow
 
+---
+# This section is not needed
 <!-- Install Tensorflow Haskell bindings -->
 cd ~/git && git clone --depth 1 --recursive https://github.com/tensorflow/haskell.git tensorflow-haskell
 
@@ -69,3 +75,5 @@ LANG=en_US.UTF-8
 cd ~/git/tensorflow-haskell
 stack setup
 stack test
+
+---

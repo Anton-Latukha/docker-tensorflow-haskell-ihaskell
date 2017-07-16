@@ -1,3 +1,17 @@
+2.
+Dids:
+* Studied how to use IHaskell
+* Tested Tensorflow Haskell bindings with simple program (positive)
+* Tested Tensorflow Haskell bindings in the IHaskell (negative, bindings not present)
+* Studied how to port built by the official documentation Tensorflow Haskell bindings to IHaskell
+* Tried a couple of ways with Stack
+* Found that there are Tensorflow packages on Hackage that are straight from (https://github.com/tensorflow/haskell) and latest versions, so they must be trustworthy. Better to offload custom building in favour of them.
+* Installed all that packages to IHaskell project using streamlined method - stack.
+* Testing IHaskell, now Tensorflow works
+* But also hitting their version breakage: https://github.com/tensorflow/haskell/issues/137, or 'Ambiguous occurrence's in the old version they suggest
+* Error above is the runtime error. Upon 
+
+1.
 Dids:
 * Studied what IHaskell is
 * Studied IHaskell image provided, and other available variants. Decided to do firstly dev by hand. to understand solution, and also see next step better.
@@ -18,6 +32,7 @@ Solved issues:
 TODO:
 * Study and do basic IHaskell usage, to see if integration works and for testing.
 * Complete 1-fs milestone. Move forward
+* Stanford CoreNLP
 * Probably move image to be based on Tensorflow base image
 * Submit PR to IHaskell with real installation instructions
 * Ask IHaskell: How it is that their Dockerfile got complettly different from README.md installation
