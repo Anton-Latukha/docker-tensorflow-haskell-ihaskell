@@ -13,9 +13,9 @@ Dids:
 * Error above is the runtime error. Upon restarting - stable version code has normal functioning
 * Created GitHub repository to have remote source control
 * Moved progress to Git.
-* Condenced/Transferred everything made today to Dockerfile
+* Condensed/Transferred everything made today to Dockerfile
 * Continued investigation Tensorflow images.
-* Live image commited to local Docker repository
+* Live image committed to local Docker repository
 * Build-testing image from Dockerfile
 * 1-st milestone completed
 

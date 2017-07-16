@@ -45,5 +45,6 @@ RUN stack install tensorflow tensorflow-proto tensorflow-records tensorflow-test
 RUN stack exec ihaskell -- install --stack
 
 # Run Jupyter server
+EXPOSE 8888
 WORKDIR "$HOME"/git
 CMD stack exec jupyter -- notebook --ip="$(hostname -i)" --allow-root
