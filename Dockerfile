@@ -1,8 +1,8 @@
 FROM latukha/ubuntu-dev-updated
 MAINTAINER Anton Latukha <anton.latukha+docker@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update
 # IHaskell deps
+RUN apt-get update
 RUN apt-get install -y \
         python3-pip git \
         libtinfo-dev \
@@ -12,17 +12,37 @@ RUN apt-get install -y \
         libmagic-dev \
         libblas-dev \
         liblapack-dev
+
 # Stack
 RUN cd /tmp && curl -sSL https://get.haskellstack.org/ | sh ; cd -
 RUN PATH="$HOME"/.local/bin:"$PATH"
+
 RUN mkdir -p "$HOME"/git && cd "$HOME"/git
+
 # IHaskell
 RUN git clone --depth 1 https://github.com/gibiansky/IHaskell.git && cd "$HOME"/IHaskell
 RUN pip3 install -r requirements.txt
 RUN stack setup
 RUN stack install gtk2hs-buildtools
 RUN stack install --fast
+
+# Tensorflow
+RUN mkdir -p "$HOME"/tensorflow
+RUN apt-get install -y libcupti-dev
+
+## Using virtualenv
+RUN apt-get install -y python3-pip python3-dev python-virtualenv
+RUN virtualenv --system-site-packages -p python3 "$HOME"/tensorflow
+RUN source "$HOME"/tensorflow/bin/activate
+
+## Using CPU
+RUN pip3 install --upgrade tensorflow
+
+## Install Tensorflow bindings & it's deps (https://github.com/tensorflow/haskell)
+RUN stack install tensorflow tensorflow-proto tensorflow-records tensorflow-test tensorflow-opgen tensorflow-ops tensorflow-logging tensorflow-core-ops tensorflow-records-conduit snappy snappy-framing
+
 ## Activate IHaskell Stack
 RUN stack exec ihaskell -- install --stack
+
 # Run Jupyter server
 CMD stack exec jupyter -- notebook --ip="$(hostname -i)" --allow-root
