@@ -39,7 +39,16 @@ RUN /bin/bash -c 'pip3 install --upgrade tensorflow'
 
 ## Install Tensorflow bindings & it's deps (https://github.com/tensorflow/haskell)
 WORKDIR "$HOME"/git/IHaskell
-RUN stack install tensorflow tensorflow-proto tensorflow-records tensorflow-test tensorflow-opgen tensorflow-ops tensorflow-logging tensorflow-core-ops tensorflow-records-conduit snappy snappy-framing
+RUN apt-get install -y \
+    # Required by snappy-frames dependency.
+    libsnappy-dev \
+    # Avoids /usr/bin/ld: cannot find -ltinfo
+    libncurses5-dev \
+    # Makes stack viable in the container
+    libgmp-dev \
+    # Required for locales configuration.
+    locales
+RUN stack install snappy snappy-framing tensorflow tensorflow-proto tensorflow-records tensorflow-test tensorflow-opgen tensorflow-ops tensorflow-logging tensorflow-core-ops tensorflow-records-conduit
 
 ## Activate IHaskell Stack
 RUN stack exec ihaskell -- install --stack
