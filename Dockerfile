@@ -48,6 +48,14 @@ RUN apt-get install -y \
     libgmp-dev \
     # Required for locales configuration.
     locales
+RUN apt-get install unzip
+RUN curl -O -L \
+    https://github.com/google/protobuf/releases/download/v3.2.0/protoc-3.2.0-linux-x86_64.zip && \
+    unzip -d /usr/local protoc-3.2.0-linux-x86_64.zip bin/protoc && \
+    chmod 755 /usr/local/bin/protoc && \
+    curl -O https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-1.0.0.tar.gz && \
+    tar zxf libtensorflow-cpu-linux-x86_64-1.0.0.tar.gz -C /usr/local && \
+    ldconfig
 RUN stack install snappy snappy-framing tensorflow tensorflow-proto tensorflow-records tensorflow-test tensorflow-opgen tensorflow-ops tensorflow-logging tensorflow-core-ops tensorflow-records-conduit
 
 ## Activate IHaskell Stack
