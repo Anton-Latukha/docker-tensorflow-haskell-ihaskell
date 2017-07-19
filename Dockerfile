@@ -2,7 +2,7 @@ FROM tensorflow/tensorflow:latest-devel-py3
 MAINTAINER Anton Latukha <anton.latukha+docker@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 
-# IHaskell deps
+## IHaskell deps
 RUN apt-get update
 RUN apt-get install -y \
         python3-pip git \
@@ -14,11 +14,12 @@ RUN apt-get install -y \
         libblas-dev \
         liblapack-dev
 
-# Stack
+## Stack
 RUN cd /tmp && curl -sSL https://get.haskellstack.org/ | sh ; cd -
 RUN PATH="$HOME"/.local/bin:"$PATH"
 WORKDIR "$HOME"/git
-# IHaskell
+
+## IHaskell
 RUN git clone --depth 1 https://github.com/gibiansky/IHaskell.git
 WORKDIR "$HOME"/git/IHaskell
 RUN pip3 install -r requirements.txt
@@ -26,19 +27,19 @@ RUN stack setup
 RUN stack install gtk2hs-buildtools
 RUN stack install --fast
 
-# # Tensorflow
+# ## Tensorflow
 # RUN apt-get install -y libcupti-dev
 # 
-# ## Using virtualenv
+# ### Using virtualenv
 # RUN apt-get install -y python3-pip python3-dev python-virtualenv
 # RUN virtualenv --system-site-packages -p python3 "$HOME"/tensorflow
 # WORKDIR "$HOME"/tensorflow
 # RUN /bin/bash -c 'source "$HOME"/tensorflow/bin/activate'
 # 
-# ## Using CPU
+# ### Using CPU
 # RUN /bin/bash -c 'pip3 install --upgrade tensorflow'
 
-## Install Tensorflow bindings & it's deps (https://github.com/tensorflow/haskell)
+### Install Tensorflow bindings & it's deps (https://github.com/tensorflow/haskell)
 WORKDIR "$HOME"/git/IHaskell
 RUN apt-get install -y \
     # Required by snappy-frames dependency.
@@ -59,10 +60,26 @@ RUN curl -O -L \
     ldconfig
 RUN stack install snappy snappy-framing tensorflow tensorflow-proto tensorflow-records tensorflow-test tensorflow-opgen tensorflow-ops tensorflow-logging tensorflow-core-ops tensorflow-records-conduit
 
-## Activate IHaskell Stack
+### Activate IHaskell Stack
 RUN stack exec ihaskell -- install --stack
 
-# Run Jupyter server
+## Jupyter
+
+### Generate default config
+RUN stack exec jupyter -- notebook --generate-config
+#### Config written to /root/.jupyter/jupyter_notebook_config.py
+
+### Configure
+RUN echo "
+#### Dockerfile injection
+c.JupyterApp.config_file_name = '/root/.jupyter/jupyter_notebook_config.py'
+c.NotebookApp.ip = '*'
+c.NotebookApp.open_browser = False
+c.NotebookApp.password_required = True
+c.NotebookApp.port = 8888
+c.KernelManager.autorestart = True" >> '/root/.jupyter/jupyter_notebook_config.py'
+
+## Run Jupyter server
 EXPOSE 8888
 WORKDIR "$HOME"/git
 CMD stack exec jupyter -- notebook --ip="$(hostname -i)" --allow-root
