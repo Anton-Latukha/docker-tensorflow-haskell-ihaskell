@@ -1,4 +1,4 @@
-FROM latukha/ubuntu-dev-updated
+FROM tensorflow/tensorflow:latest-devel-py3
 MAINTAINER Anton Latukha <anton.latukha+docker@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -26,17 +26,17 @@ RUN stack setup
 RUN stack install gtk2hs-buildtools
 RUN stack install --fast
 
-# Tensorflow
-RUN apt-get install -y libcupti-dev
-
-## Using virtualenv
-RUN apt-get install -y python3-pip python3-dev python-virtualenv
-RUN virtualenv --system-site-packages -p python3 "$HOME"/tensorflow
-WORKDIR "$HOME"/tensorflow
-RUN /bin/bash -c 'source "$HOME"/tensorflow/bin/activate'
-
-## Using CPU
-RUN /bin/bash -c 'pip3 install --upgrade tensorflow'
+# # Tensorflow
+# RUN apt-get install -y libcupti-dev
+# 
+# ## Using virtualenv
+# RUN apt-get install -y python3-pip python3-dev python-virtualenv
+# RUN virtualenv --system-site-packages -p python3 "$HOME"/tensorflow
+# WORKDIR "$HOME"/tensorflow
+# RUN /bin/bash -c 'source "$HOME"/tensorflow/bin/activate'
+# 
+# ## Using CPU
+# RUN /bin/bash -c 'pip3 install --upgrade tensorflow'
 
 ## Install Tensorflow bindings & it's deps (https://github.com/tensorflow/haskell)
 WORKDIR "$HOME"/git/IHaskell
