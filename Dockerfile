@@ -66,20 +66,15 @@ RUN stack exec ihaskell -- install --stack
 ## Jupyter
 
 ### Generate default config
-RUN stack exec jupyter -- notebook --generate-config
+#RUN stack exec jupyter -- notebook --generate-config
 #### Config written to /root/.jupyter/jupyter_notebook_config.py
 
 ### Configure
 RUN echo "
-#### Dockerfile injection
-c.JupyterApp.config_file_name = '/root/.jupyter/jupyter_notebook_config.py'
-c.NotebookApp.ip = '*'
-c.NotebookApp.open_browser = False
 c.NotebookApp.password_required = True
-c.NotebookApp.port = 8888
 c.KernelManager.autorestart = True" >> '/root/.jupyter/jupyter_notebook_config.py'
 
 ## Run Jupyter server
 EXPOSE 8888
 WORKDIR "$HOME"/git
-CMD stack exec jupyter -- notebook --ip="$(hostname -i)" --allow-root
+CMD stack exec jupyter -- notebook --allow-root
