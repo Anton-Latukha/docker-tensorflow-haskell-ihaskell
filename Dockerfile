@@ -70,8 +70,10 @@ RUN stack exec ihaskell -- install --stack
 #### Config written to /root/.jupyter/jupyter_notebook_config.py
 
 ### Configure
-RUN echo "
-c.KernelManager.autorestart = True" >> '/root/.jupyter/jupyter_notebook_config.py'
+#### c.NotebookApp.password_required = True and
+#### c.KernelManager.autorestart = True
+#### give in Tensorflow Python 2.7:
+#### Unexpected error Encountered error: 500 Server Error: Internal Server Error ("Unknown instruction: C.NOTEBOOKAPP.PASSWORD_REQUIRED")
 
 ## Run Jupyter server
 EXPOSE 8888
