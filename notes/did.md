@@ -3,8 +3,11 @@ Dids:
 * Hard switched image to be based on Tensorflow CPU base image.
 * Made an automatic build (https://hub.docker.com/r/latukha/docker-tensorflow-haskell-ihaskell/builds/).
 * Tested Jupyter work on port 8888 again.
-* Got and studied full Jupyter configuration list (a lot)
-* Created initial configuration of Jupyter
+* Got and studied full Jupyter configuration options list
+* Created initial configuration of Jupyter Notebook
+* Testing of port/network access. Of configuration
+* Merged initial configuration of Jupyter Notebook with Tensorflow
+* Environment descriptions in README.md
 
 2.
 Dids:
