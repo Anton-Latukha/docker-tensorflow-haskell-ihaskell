@@ -71,7 +71,6 @@ RUN stack exec ihaskell -- install --stack
 
 ### Configure
 RUN echo "
-c.NotebookApp.password_required = True
 c.KernelManager.autorestart = True" >> '/root/.jupyter/jupyter_notebook_config.py'
 
 ## Run Jupyter server
