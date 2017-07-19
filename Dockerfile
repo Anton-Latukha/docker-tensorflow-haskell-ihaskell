@@ -1,6 +1,7 @@
 FROM latukha/ubuntu-dev-updated
 MAINTAINER Anton Latukha <anton.latukha+docker@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
+
 # IHaskell deps
 RUN apt-get update
 RUN apt-get install -y \

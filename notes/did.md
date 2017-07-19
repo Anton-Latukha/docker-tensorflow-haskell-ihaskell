@@ -23,8 +23,8 @@ TODO:
 * Move image to be based on Tensorflow CPU base image
 * Stanford CoreNLP
 * Submit PR to IHaskell with real installation instructions
-* Ask IHaskell: How it is that their Dockerfile got complettly different from README.md installation
-* Submit bugreport with error in Tensorflow verification instructions
+* Ask IHaskell: How it is that their Dockerfile got completely different from README.md installation
+* Submit bug report with error in Tensorflow verification instructions
 (https://stackoverflow.com/questions/40904979/the-print-of-string-constant-is-always-attached-with-b-intensorflow)
 * For them, tensorflow/haskell, do their laziness "# TODO: move the setup step to the docker script." That enables possibility of Tensorflow-Haskell + IHaskell
 * Push/ask tensorflow/haskell devs to make new release of bindings and publish it on Hackage/Stackage
