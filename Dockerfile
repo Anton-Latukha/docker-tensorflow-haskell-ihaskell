@@ -60,7 +60,7 @@ RUN curl -O -L \
     curl -O https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-"$LIBTFLOWCPU_V".tar.gz && \
     tar zxf libtensorflow-cpu-linux-x86_64-"$LIBTFLOWCPU_V".tar.gz -C /usr/local && \
     ldconfig
-RUN stack install snappy snappy-framing tensorflow-proto tensorflow tensorflow-records tensorflow-test tensorflow-opgen tensorflow-ops tensorflow-logging tensorflow-core-ops tensorflow-records-conduit
+RUN stack install snappy snappy-framing tensorflow-proto tensorflow tensorflow-core-ops tensorflow-ops tensorflow-records tensorflow-records-conduit tensorflow-test tensorflow-opgen tensorflow-logging
 
 ### Activate IHaskell Stack
 RUN stack exec ihaskell -- install --stack
