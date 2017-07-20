@@ -51,12 +51,14 @@ RUN apt-get install -y \
     # Required for locales configuration.
     locales
 RUN apt-get install unzip
+ENV PROTOBUF_V=3.2.0 \
+    LIBTFLOWCPU_V=1.0.0
 RUN curl -O -L \
-    https://github.com/google/protobuf/releases/download/v3.2.0/protoc-3.2.0-linux-x86_64.zip && \
-    unzip -d /usr/local protoc-3.2.0-linux-x86_64.zip bin/protoc && \
+    https://github.com/google/protobuf/releases/download/v"$PROTOBUF_V"/protoc-"$PROTOBUF_V"-linux-x86_64.zip && \
+    unzip -d /usr/local protoc-"$PROTOBUF_V"-linux-x86_64.zip bin/protoc && \
     chmod 755 /usr/local/bin/protoc && \
-    curl -O https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-1.0.0.tar.gz && \
-    tar zxf libtensorflow-cpu-linux-x86_64-1.0.0.tar.gz -C /usr/local && \
+    curl -O https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-"$LIBTFLOWCPU_V".tar.gz && \
+    tar zxf libtensorflow-cpu-linux-x86_64-"$LIBTFLOWCPU_V".tar.gz -C /usr/local && \
     ldconfig
 RUN stack install snappy snappy-framing tensorflow-proto tensorflow tensorflow-records tensorflow-test tensorflow-opgen tensorflow-ops tensorflow-logging tensorflow-core-ops tensorflow-records-conduit
 
