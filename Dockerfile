@@ -55,10 +55,9 @@ ENV PROTOBUF_V=3.3.0 \
     LIBTFLOWCPU_V=1.2.1
 RUN curl -O -L \
     https://github.com/google/protobuf/releases/download/v"$PROTOBUF_V"/protoc-"$PROTOBUF_V"-linux-x86_64.zip && \
-    unzip -d /usr/local protoc-"$PROTOBUF_V"-linux-x86_64.zip bin/protoc && \
+    unzip -d /usr/local protoc-"$PROTOBUF_V"-linux-x86_64.zip /usr/local/bin/protoc && \
     chmod 755 /usr/local/bin/protoc && \
-    curl -O https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-"$LIBTFLOWCPU_V".tar.gz && \
-    tar zxf libtensorflow-cpu-linux-x86_64-"$LIBTFLOWCPU_V".tar.gz -C /usr/local && \
+    curl -L https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-"$LIBTFLOWCPU_V".tar.gz | tar -xz -C /usr/local && \
     ldconfig
 RUN stack install snappy snappy-framing tensorflow-proto tensorflow tensorflow-core-ops tensorflow-ops tensorflow-records tensorflow-records-conduit tensorflow-test tensorflow-opgen tensorflow-logging
 
