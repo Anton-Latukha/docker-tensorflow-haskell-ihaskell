@@ -51,8 +51,8 @@ RUN apt-get install -y \
     # Required for locales configuration.
     locales
 RUN apt-get install unzip
-ENV PROTOBUF_V=3.2.0 \
-    LIBTFLOWCPU_V=1.0.0
+ENV PROTOBUF_V=3.3.0 \
+    LIBTFLOWCPU_V=1.2.1
 RUN curl -O -L \
     https://github.com/google/protobuf/releases/download/v"$PROTOBUF_V"/protoc-"$PROTOBUF_V"-linux-x86_64.zip && \
     unzip -d /usr/local protoc-"$PROTOBUF_V"-linux-x86_64.zip bin/protoc && \
