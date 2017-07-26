@@ -1,6 +1,9 @@
 5.
+Dids:
+* Created the GPU version
+* Pushed GPU Docker image to Docker Hub (latukha/tensorflow-haskell-ihaskell:latest-gpu)
+
 TODO:
-* Create a GPU version
 * Find, choose and make best way to combine CPU/GPU development & usage
 * Make possible optimizations of execution
 * Stanford CoreNLP
