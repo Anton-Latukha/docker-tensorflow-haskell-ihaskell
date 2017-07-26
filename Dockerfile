@@ -25,7 +25,7 @@ WORKDIR "$HOME"/git/IHaskell
 RUN pip3 install -r requirements.txt
 RUN stack setup
 RUN stack install gtk2hs-buildtools
-RUN stack install --fast
+RUN stack install
 
 # ## Tensorflow
 # RUN apt-get install -y libcupti-dev
