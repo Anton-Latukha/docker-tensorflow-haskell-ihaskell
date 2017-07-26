@@ -1,3 +1,28 @@
+5.
+TODO:
+* Create a GPU version
+* Find, choose and make best way to combine CPU/GPU development & usage
+* Make possible optimizations of execution
+* Stanford CoreNLP
+* Submit PR to IHaskell with real installation instructions
+* Ask IHaskell: How it is that their Dockerfile got completely different from README.md installation
+* Submit bug report with error in Tensorflow verification instructions
+(https://stackoverflow.com/questions/40904979/the-print-of-string-constant-is-always-attached-with-b-intensorflow)
+* For them, tensorflow/haskell, do their laziness "# TODO: move the setup step to the docker script." That enables possibility of Tensorflow-Haskell + IHaskell
+* Push/ask tensorflow/haskell devs to make new release of bindings and publish it on Hackage/Stackage
+
+4.
+Dids:
+* Built complette image
+* Tested image, networking and password access work.
+* Pushed image to Docker Docker Hub
+* Reviewed image layers
+* Checked sideload process of IHaskell, doesn't it overwrite something
+* Formed sideload version variables
+* Tested version with variables working
+* Rolled back to libtensorflow 1.0.0
+
+
 3.
 Dids:
 * Hard switched image to be based on Tensorflow CPU base image.
@@ -9,16 +34,6 @@ Dids:
 * Merged initial configuration of Jupyter Notebook with Tensorflow
 * Environment descriptions in README.md
 * 1-st milestone completed
-
-TODO:
-* Stanford CoreNLP
-* Submit PR to IHaskell with real installation instructions
-* Ask IHaskell: How it is that their Dockerfile got completely different from README.md installation
-* Submit bug report with error in Tensorflow verification instructions
-(https://stackoverflow.com/questions/40904979/the-print-of-string-constant-is-always-attached-with-b-intensorflow)
-* For them, tensorflow/haskell, do their laziness "# TODO: move the setup step to the docker script." That enables possibility of Tensorflow-Haskell + IHaskell
-* Push/ask tensorflow/haskell devs to make new release of bindings and publish it on Hackage/Stackage
-
 
 2.
 Dids:
