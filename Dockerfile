@@ -24,8 +24,8 @@ RUN git clone --depth 1 https://github.com/gibiansky/IHaskell.git
 WORKDIR "$HOME"/git/IHaskell
 RUN pip3 install -r requirements.txt
 RUN stack setup
-RUN stack install gtk2hs-buildtools
-RUN stack install
+RUN stack install --ghc-options=-O2 gtk2hs-buildtools
+RUN stack install --ghc-options=-O2
 
 # ## Tensorflow
 # RUN apt-get install -y libcupti-dev
@@ -59,7 +59,7 @@ RUN curl -O -L \
     chmod 755 /usr/local/bin/protoc && \
     curl -L https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-"$LIBTFLOWCPU_V".tar.gz | tar -xz -C /usr/local && \
     ldconfig
-RUN stack install snappy snappy-framing tensorflow-proto tensorflow tensorflow-core-ops tensorflow-ops tensorflow-records tensorflow-records-conduit tensorflow-test tensorflow-opgen tensorflow-logging
+RUN stack install --ghc-options=-O2 snappy snappy-framing tensorflow-proto tensorflow tensorflow-core-ops tensorflow-ops tensorflow-records tensorflow-records-conduit tensorflow-test tensorflow-opgen tensorflow-logging
 
 ### Activate IHaskell Stack
 RUN stack exec ihaskell -- install --stack
