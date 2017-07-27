@@ -15,7 +15,7 @@ RUN apt-get install -y \
         liblapack-dev
 
 ## Stack
-RUN cd /tmp && curl -sSL https://get.haskellstack.org/ | sh ; cd -
+RUN curl -sSL https://get.haskellstack.org/ | sh
 RUN PATH="$HOME"/.local/bin:"$PATH"
 WORKDIR "$HOME"/git
 
