@@ -1,4 +1,14 @@
 6.
+Dids:
+* Made a hand build. Receiving and compiling private code into binary packages. And taking that process written.
+* Solved SSH host acceptance (git@ uses SSH, while github.com is unknown host that can be approved only interactively)
+* Made private packages process clean all tracks. Removing keys and sources, so only compiled versions present, and any possible shell history are cleaned by Docker itself. (but in default push - COPY keys layer going to be preserved. I have handfull of variants how to tweak that, including internal AWS secrets also)
+* Tested build
+* Tested -O2 build
+* Made Ansible playbook to deploy to AWS
+* Done some additional features testing on GCE
+
+
 TODO:
 * Split to two versions, OSS and ADV
 * Receive and compile private code into binary package
