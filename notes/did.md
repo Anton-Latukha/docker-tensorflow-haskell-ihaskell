@@ -2,6 +2,7 @@
 Dids:
 * Created the GPU version
 * Pushed GPU Docker image to Docker Hub (latukha/tensorflow-haskell-ihaskell:latest-gpu)
+* Compiled and pushed an -O2 version in latukha/tensorflow-haskell-ihaskell:latest, that prove that -O2 latukha/tensorflow-haskell-ihaskell:latest-gpu is easily achieved now also.
 
 TODO:
 * Find, choose and make best way to combine CPU/GPU development & usage
