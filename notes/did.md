@@ -1,19 +1,27 @@
-5.
-Dids:
-* Created the GPU version
-* Pushed GPU Docker image to Docker Hub (latukha/tensorflow-haskell-ihaskell:latest-gpu)
-* Compiled and pushed an -O2 version in latukha/tensorflow-haskell-ihaskell:latest, that prove that -O2 latukha/tensorflow-haskell-ihaskell:latest-gpu is easily achieved now also.
-
+6.
 TODO:
-* Find, choose and make best way to combine CPU/GPU development & usage
-* Make possible optimizations of execution
-* Stanford CoreNLP
+* Split to two versions, OSS and ADV
+* Receive and compile private code into binary package
+* Make a process to produce same platform&optimization binaries, without exposing access to private repos or code in them
+* Make a process and a way to insert binaries seamlessly in the ADV image
+* Provide script to push the docker image to AWS container service
+* Make further AWS integration (maybe migrate whole process to AWS)
+* Make  further possible optimizations of execution
 * Submit PR to IHaskell with real installation instructions
 * Ask IHaskell: How it is that their Dockerfile got completely different from README.md installation
 * Submit bug report with error in Tensorflow verification instructions
 (https://stackoverflow.com/questions/40904979/the-print-of-string-constant-is-always-attached-with-b-intensorflow)
 * For them, tensorflow/haskell, do their laziness "# TODO: move the setup step to the docker script." That enables possibility of Tensorflow-Haskell + IHaskell
 * Push/ask tensorflow/haskell devs to make new release of bindings and publish it on Hackage/Stackage
+
+
+5.
+Dids:
+* Created the GPU version
+* Pushed GPU Docker image to Docker Hub (latukha/tensorflow-haskell-ihaskell:latest-gpu)
+* Compiled and pushed an -O2 version in latukha/tensorflow-haskell-ihaskell:latest, that prove that -O2 latukha/tensorflow-haskell-ihaskell:latest-gpu is easily achieved now also.
+* Decided not to create branches fro CPU/GPU, as versions have a minor diff, just do 'Dockerfile' for CPU and 'Dockerfile-gpu' for GPU
+* Found a way to workaround Git usage of main key (account key) to receive code from deploy keys. Useful.
 
 4.
 Dids:
@@ -60,9 +68,6 @@ Dids:
 * Build-testing image from Dockerfile
 * 1-st milestone completed
 
-TODO:
-* Move image to be based on Tensorflow CPU base image
-
 1.
 Dids:
 * Studied what IHaskell is
@@ -80,10 +85,6 @@ Dids:
 Solved issues:
 * IHaskell has completely broken description. Made working installation and instructions.
 * Faced two Jupyter notebook startup problems, python exception, and second one.
-
-TODO:
-* Study and do basic IHaskell usage, to see if integration works and for testing.
-* Complete 1-fs milestone. Move forward
 
 Notes:
 * Looked around DockerHub, most popular image is 3 years old, gibiansky/ihaskell last updated 1 year ago, and their Dockerfile is weird and uses 2015-08-15 packages. README.md setup despite being broken, are more up to date. 
