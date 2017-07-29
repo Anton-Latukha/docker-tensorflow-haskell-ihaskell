@@ -6,7 +6,7 @@ Dids:
 * Tested build
 * Tested -O2 build
 * Made Ansible playbook to deploy to AWS
-* Done some additional features testing on GCE
+* Done many different additional research&testing on both host and GCE
 
 
 TODO:
