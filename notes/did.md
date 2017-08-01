@@ -1,15 +1,15 @@
-6.
+7.
 Dids:
-* Made a hand build. Receiving and compiling private code into binary packages. And taking that process written.
-* Solved SSH host acceptance (git@ uses SSH, while github.com is unknown host that can be approved only interactively)
-* Made private packages process clean all tracks. Removing keys and sources, so only compiled versions present, and any possible shell history are cleaned by Docker itself. (but in default push - COPY keys layer going to be preserved. I have handfull of variants how to tweak that, including internal AWS secrets also)
-* Tested build
-* Tested -O2 build
-* Made Ansible playbook to deploy to AWS
-* Done many different additional research&testing on both host and GCE
-
+* Overcame bug https://github.com/ansible/ansible/issues/17147 in a proper way.
+* Overcame bug https://github.com/Homebrew/homebrew-core/issues/9229
+* Made clean Ansible setup on clean system to do work.
+* Detected the root cause: EC2 Script PEP 394 non-compliant https://www.python.org/dev/peps/pep-0394/
+* Done reshaping inventory and variables to use Dynamic Inventory
+* EC2 dynamic inventory does not have any EC2 Containers Service or Register functionality or targeting, so all that is manually driven, so relaying on EC2 instance hosting and other stuff need to be written manually..
+* Wrote a letter, describing progress and thoughts, asking for more information on vision of AWS/Ansible setup. And shared a view that we must focus on current tasks and milestone, and what need to be done on my part.
 
 TODO:
+* Dynamic inventory for Ansible AWS playbook
 * Split to two versions, OSS and ADV
 * Receive and compile private code into binary package
 * Make a process to produce same platform&optimization binaries, without exposing access to private repos or code in them
@@ -24,6 +24,15 @@ TODO:
 * For them, tensorflow/haskell, do their laziness "# TODO: move the setup step to the docker script." That enables possibility of Tensorflow-Haskell + IHaskell
 * Push/ask tensorflow/haskell devs to make new release of bindings and publish it on Hackage/Stackage
 
+6.
+Dids:
+* Made a hand build. Receiving and compiling private code into binary packages. And taking that process written.
+* Solved SSH host acceptance (git@ uses SSH, while github.com is unknown host that can be approved only interactively)
+* Made private packages process clean all tracks. Removing keys and sources, so only compiled versions present, and any possible shell history are cleaned by Docker itself. (but in default push - COPY keys layer going to be preserved. I have handfull of variants how to tweak that, including internal AWS secrets also)
+* Tested build
+* Tested -O2 build
+* Made Ansible playbook to deploy to AWS
+* Done many different additional research&testing on both host and GCE
 
 5.
 Dids:
