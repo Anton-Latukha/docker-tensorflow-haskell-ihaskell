@@ -1,6 +1,7 @@
 FROM tensorflow/tensorflow:latest-devel-py3
 MAINTAINER Anton Latukha <anton.latukha+docker@gmail.com>
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive \
+    PATH="$HOME"'/.local/bin:'"$PATH"
 
 ## IHaskell deps
 RUN apt-get update
@@ -16,7 +17,6 @@ RUN apt-get install -y \
 
 ## Stack
 RUN curl -sSL https://get.haskellstack.org/ | sh
-ENV PATH="$HOME"/.local/bin:"$PATH"
 WORKDIR "$HOME"/git
 
 ## IHaskell
