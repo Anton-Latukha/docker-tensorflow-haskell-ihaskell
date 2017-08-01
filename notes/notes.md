@@ -28,3 +28,7 @@ Tensorflow working in iHaskell image over 8888
 Install Stanford CoreNLP as a web service in the image
 Testing all haskell-tensorflow packages
 CI integration and documentation
+
+
+
+For now, it is forming where we are going to end up with the advanced image. So it is seen: or to make the separate branch for it, but probably better including all products in the same master branch is a beautiful idea. It is convenient for work/contributions, and they intertwine beautifully. The security artifacts implementation of the advanced image is the main topic, we can do it in such a way that it can be safe to publish building instructions on GitHub. While keeping keys secret. Or if you want to hide even the addresses of repositories (but that is advertising for IT people). While enabling IT community to contribute pulls, report issues, or suggest improvements even for build of proprietary part.
