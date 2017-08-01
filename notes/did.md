@@ -1,5 +1,9 @@
 8.
 Dids:
+* Added Dockerfile-cpu-adv image to the tree
+* Added Dockerfile-gpu-adv image to the tree
+* Moved Dockerfile -> Dockerfile-cpu, because probably to do GPU-version default one is sane.
+* CPU `latest` now should move to `latest-cpu` and `latest-gpu` alias as `latest`.
 
 TODO:
 * Finish securing advanced image, and decide how to integrate its part to repository.
