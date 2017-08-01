@@ -1,7 +1,7 @@
 FROM tensorflow/tensorflow:latest-devel-py3
 MAINTAINER Anton Latukha <anton.latukha+docker@gmail.com>
 ENV DEBIAN_FRONTEND=noninteractive \
-    PATH="$HOME"'/.local/bin:'"$PATH"
+    PATH=/root/.local/bin:'"$PATH"
 
 ## IHaskell deps
 RUN apt-get update
