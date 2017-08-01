@@ -3,3 +3,17 @@ MAINTAINER Anton Latukha <anton.latukha+docker@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 
 COPY ./deploy-keys/ /root/.ssh
+
+RUN chmod -R 0400 /root/.ssh
+RUN apt install ssh -y --no-install-recommends
+RUN ssh-keyscan 'github.com' >> /root/.ssh/known_hosts
+RUN ln /root/.ssh/syntaxnet-id_rsa /root/.ssh/id_rsa
+RUN git clone --depth 1 git@github.com:mgajda/syntaxnet-haskell.git
+RUN rm /root/.ssh/syntaxnet-id_rsa /root/.ssh/id_rsa
+RUN ln /root/.ssh/corenlp-id_rsa /root/.ssh/id_rsa
+RUN git clone --depth 1 git@github.com:mgajda/corenlp-haskell.git
+RUN rm /root/.ssh/corenlp-id_rsa /root/.ssh/id_rsa
+RUN ln /root/.ssh/haskell-nlp-id_rsa /root/.ssh/id_rsa
+RUN git clone --depth 1 git@github.com:mgajda/haskell-conll.git
+RUN rm /root/.ssh/haskell-nlp-id_rsa /root/.ssh/id_rsa
+RUN PATH='/root/.local/bin:'"$PATH"
