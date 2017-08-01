@@ -6,8 +6,10 @@ Dids:
 * CPU `latest` now should move to `latest-cpu` and `latest-gpu` alias as `latest`.
 
 TODO:
-* Finish securing advanced image, and decide how to integrate its part to repository.
 * Builds of all images. OSS CPU, OSS GPU, Adv CPU, Adv GPU. On the same system.
+* Get all images build process written down.
+* Remove automatic builds on Docker Hub. It is crust, images are too heavy to build, and not git Docker Hub limits in any way.
+* Finish securing advanced image, and decide how to integrate its part to repository.
 * Push them to Docker hub
 * Dynamic inventory for Ansible AWS playbook
 * Make further AWS integration (maybe migrate whole process to AWS)
