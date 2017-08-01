@@ -1,3 +1,22 @@
+8.
+Dids:
+
+TODO:
+* Finish securing advanced image, and decide how to integrate its part to repository.
+* Builds of all images. OSS CPU, OSS GPU, Adv CPU, Adv GPU. On the same system.
+* Push them to Docker hub
+* Dynamic inventory for Ansible AWS playbook
+* Make further AWS integration (maybe migrate whole process to AWS)
+(possibility * Split to two versions, OSS and ADV)
+(moved forward in * Make a process to produce same platform&optimization binaries, without exposing access to private repos or code in them)
+* Make  further possible optimizations of execution
+* Submit PR to IHaskell with real installation instructions
+* Ask IHaskell: How it is that their Dockerfile got completely different from README.md installation
+* Submit bug report with error in Tensorflow verification instructions
+(https://stackoverflow.com/questions/40904979/the-print-of-string-constant-is-always-attached-with-b-intensorflow)
+* For them, tensorflow/haskell, do their laziness "# TODO: move the setup step to the docker script." That enables possibility of Tensorflow-Haskell + IHaskell
+* Push/ask tensorflow/haskell devs to make new release of bindings and publish it on Hackage/Stackage
+
 7.
 Dids:
 * Overcame bug https://github.com/ansible/ansible/issues/17147 in a proper way.
@@ -7,22 +26,6 @@ Dids:
 * Done reshaping inventory and variables to use Dynamic Inventory
 * EC2 dynamic inventory does not have any EC2 Containers Service or Register functionality or targeting, so all that is manually driven, so relaying on EC2 instance hosting and other stuff need to be written manually..
 * Wrote a letter, describing progress and thoughts, asking for more information on vision of AWS/Ansible setup. And shared a view that we must focus on current tasks and milestone, and what need to be done on my part.
-
-TODO:
-* Dynamic inventory for Ansible AWS playbook
-* Split to two versions, OSS and ADV
-* Receive and compile private code into binary package
-* Make a process to produce same platform&optimization binaries, without exposing access to private repos or code in them
-* Make a process and a way to insert binaries seamlessly in the ADV image
-* Provide script to push the docker image to AWS container service
-* Make further AWS integration (maybe migrate whole process to AWS)
-* Make  further possible optimizations of execution
-* Submit PR to IHaskell with real installation instructions
-* Ask IHaskell: How it is that their Dockerfile got completely different from README.md installation
-* Submit bug report with error in Tensorflow verification instructions
-(https://stackoverflow.com/questions/40904979/the-print-of-string-constant-is-always-attached-with-b-intensorflow)
-* For them, tensorflow/haskell, do their laziness "# TODO: move the setup step to the docker script." That enables possibility of Tensorflow-Haskell + IHaskell
-* Push/ask tensorflow/haskell devs to make new release of bindings and publish it on Hackage/Stackage
 
 6.
 Dids:
