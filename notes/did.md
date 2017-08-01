@@ -5,6 +5,7 @@ Dids:
 * Moved Dockerfile -> Dockerfile-cpu, because probably to do GPU-version default one is sane.
 * CPU `latest` now should move to `latest-cpu` and `latest-gpu` alias as `latest`.
 * Build of all images: cpu, gpu, cpu-adv, gpu-adv.
+* Measuring instance optimal configuration for the task. (~4 cores, ~16GB RAM)
 
 TODO:
 * Builds of all images. OSS CPU, OSS GPU, Adv CPU, Adv GPU. On the same system.
