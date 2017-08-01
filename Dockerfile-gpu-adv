@@ -1,0 +1,25 @@
+FROM latukha/tensorflow-haskell-ihaskell:latest-gpu
+MAINTAINER Anton Latukha <anton.latukha+docker@gmail.com>
+ENV DEBIAN_FRONTEND noninteractive
+
+COPY ./deploy-keys/ /root/.ssh
+
+RUN chmod -R 0400 /root/.ssh
+RUN apt install ssh -y --no-install-recommends
+RUN ssh-keyscan 'github.com' >> /root/.ssh/known_hosts
+RUN ln /root/.ssh/syntaxnet-id_rsa /root/.ssh/id_rsa
+RUN git clone --depth 1 git@github.com:mgajda/syntaxnet-haskell.git
+RUN rm /root/.ssh/syntaxnet-id_rsa /root/.ssh/id_rsa
+RUN ln /root/.ssh/corenlp-id_rsa /root/.ssh/id_rsa
+RUN git clone --depth 1 git@github.com:mgajda/corenlp-haskell.git
+RUN rm /root/.ssh/corenlp-id_rsa /root/.ssh/id_rsa
+RUN ln /root/.ssh/haskell-nlp-id_rsa /root/.ssh/id_rsa
+RUN git clone --depth 1 git@github.com:mgajda/haskell-conll.git
+RUN rm /root/.ssh/haskell-nlp-id_rsa /root/.ssh/id_rsa
+RUN PATH='/root/.local/bin:'"$PATH"
+
+# At first install haskell-conll (it is also a dependency)
+RUN cd /git/haskell-conll && stack install --ghc-options=-O2
+RUN cd /git/corenlp-haskell && stack install --ghc-options=-O2
+RUN cd /git/syntaxnet-haskell && stack install --ghc-options=-O2
+RUN rm -rf /git/haskell-conll /git/corenlp-haskell /git/syntaxnet-haskell
