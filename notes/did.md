@@ -3,6 +3,7 @@ TODO:
 * Document images.
 * Document usage of images.
 * Document building HOWTO.
+* "Spring cleaning".
 * Finish securing advanced image, and decide how to integrate its part to repository.
 * Dynamic inventory for Ansible AWS playbook
 * Make further AWS integration (maybe migrate whole process to AWS)
