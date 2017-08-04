@@ -1,18 +1,9 @@
-8.
-Dids:
-* Added Dockerfile-cpu-adv image to the tree
-* Added Dockerfile-gpu-adv image to the tree
-* Moved Dockerfile -> Dockerfile-cpu, because probably to do GPU-version default one is sane.
-* CPU `latest` now should move to `latest-cpu` and `latest-gpu` alias as `latest`.
-* Build of all images: cpu, gpu, cpu-adv, gpu-adv.
-* Measuring instance optimal configuration for the task. (~4 cores, ~16GB RAM)
-
+9.
 TODO:
-* Builds of all images. OSS CPU, OSS GPU, Adv CPU, Adv GPU. On the same system.
-* Get all images build process written down.
-* Remove automatic builds on Docker Hub. It is crust, images are too heavy to build, and not git Docker Hub limits in any way.
+* Document images.
+* Document usage of images.
+* Document building HOWTO.
 * Finish securing advanced image, and decide how to integrate its part to repository.
-* Push them to Docker hub
 * Dynamic inventory for Ansible AWS playbook
 * Make further AWS integration (maybe migrate whole process to AWS)
 (possibility * Split to two versions, OSS and ADV)
@@ -24,6 +15,22 @@ TODO:
 (https://stackoverflow.com/questions/40904979/the-print-of-string-constant-is-always-attached-with-b-intensorflow)
 * For them, tensorflow/haskell, do their laziness "# TODO: move the setup step to the docker script." That enables possibility of Tensorflow-Haskell + IHaskell
 * Push/ask tensorflow/haskell devs to make new release of bindings and publish it on Hackage/Stackage
+
+
+8.
+Dids:
+* Added Dockerfile-cpu-adv image to the tree
+* Added Dockerfile-gpu-adv image to the tree
+* Moved Dockerfile -> Dockerfile-cpu, because probably to do GPU-version default one is sane.
+* CPU `latest` now should move to `latest-cpu` and `latest-gpu` alias as `latest`.
+* Build of all images: cpu, gpu, cpu-adv, gpu-adv.
+* Testing an rebuilding several times.
+* Measuring instance optimal configuration for the building task. (~4 cores, ~16GB RAM, ~30GB HDD, ~3Hour)
+* Pushing of all images: cpu, gpu, cpu-adv, gpu-adv.
+* Tagging images as V7 also. And `latest-gpu` -> `latest`.
+* Committing all tags to Docker Hub
+* Removed Automatic builds from Docker Hub.
+* Communicated with Michal.
 
 7.
 Dids:
