@@ -1,11 +1,22 @@
 FROM tensorflow/tensorflow:latest-devel-gpu-py3
 MAINTAINER Anton Latukha <anton.latukha+docker@gmail.com>
+
+
+## Set user-wide PATH Haskell Stack packages
 ENV DEBIAN_FRONTEND=noninteractive \
     PATH=/root/.local/bin:"$PATH"
 
-## IHaskell deps
-RUN apt-get update
-RUN apt-get install -y \
+
+RUN apt update
+
+
+## Install Stack with its dependencies
+RUN curl -sSL https://get.haskellstack.org/ | sh
+
+
+## IHaskell
+### Install IHaskell system package dependencies
+RUN apt install -y \
         python3-pip git \
         libtinfo-dev \
         libzmq3-dev \
@@ -15,68 +26,60 @@ RUN apt-get install -y \
         libblas-dev \
         liblapack-dev
 
-## Stack
-RUN curl -sSL https://get.haskellstack.org/ | sh
-WORKDIR "$HOME"/git
 
-## IHaskell
-RUN git clone --depth 1 https://github.com/gibiansky/IHaskell.git
-WORKDIR "$HOME"/git/IHaskell
+### Get IHaskell code, setup GHC, compile&install IHaskell Haskell dependencies, and then compile&install IHaskell itself
+WORKDIR /root/IHaskell
+RUN git clone --depth 1 https://github.com/gibiansky/IHaskell.git .
 RUN pip3 install -r requirements.txt
 RUN stack setup
 RUN stack install --ghc-options=-O2 gtk2hs-buildtools
 RUN stack install --ghc-options=-O2
 
-# ## Tensorflow
-# RUN apt-get install -y libcupti-dev
-# 
-# ### Using virtualenv
-# RUN apt-get install -y python3-pip python3-dev python-virtualenv
-# RUN virtualenv --system-site-packages -p python3 "$HOME"/tensorflow
-# WORKDIR "$HOME"/tensorflow
-# RUN /bin/bash -c 'source "$HOME"/tensorflow/bin/activate'
-# 
-# ### Using CPU
-# RUN /bin/bash -c 'pip3 install --upgrade tensorflow'
 
-### Install Tensorflow bindings & it's deps (https://github.com/tensorflow/haskell)
-WORKDIR "$HOME"/git/IHaskell
-RUN apt-get install -y \
-    # Required by snappy-frames dependency.
+## Tensorflow bindings
+### Install system package dependencies (https://github.com/tensorflow/haskell)
+RUN apt install -y \
     libsnappy-dev \
-    # Avoids /usr/bin/ld: cannot find -ltinfo
     libncurses5-dev \
-    # Makes stack viable in the container
     libgmp-dev \
-    # Required for locales configuration.
     locales
-RUN apt-get install unzip
+
+
+### Install protobuf & libtensorlow-gpu
 ENV PROTOBUF_V=3.3.0 \
     LIBTFLOWCPU_V=1.0.0
+RUN apt install -y unzip
 RUN curl -O -L \
     https://github.com/google/protobuf/releases/download/v"$PROTOBUF_V"/protoc-"$PROTOBUF_V"-linux-x86_64.zip && \
     unzip -d /usr/local protoc-"$PROTOBUF_V"-linux-x86_64.zip bin/protoc && \
+    rm /usr/local protoc-"$PROTOBUF_V"-linux-x86_64.zip && \
     chmod 755 /usr/local/bin/protoc && \
-    curl -L https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-"$LIBTFLOWCPU_V".tar.gz | tar -xz -C /usr/local && \
+    curl -L https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-gpu-linux-x86_64-"$LIBTFLOWCPU_V".tar.gz | tar -xz -C /usr/local && \
     ldconfig
-RUN stack install --ghc-options=-O2 snappy snappy-framing tensorflow-proto tensorflow tensorflow-core-ops tensorflow-ops tensorflow-records tensorflow-records-conduit tensorflow-test tensorflow-opgen tensorflow-logging
 
-### Activate IHaskell Stack
-RUN stack exec ihaskell -- install --stack
 
-## Jupyter
+### Install Tensorflow Haskell dependencies and bindings itself
+RUN stack install --ghc-options=-O2 \
+        snappy \
+        snappy-framing \
+        tensorflow-proto \
+        tensorflow \
+        tensorflow-core-ops \
+        tensorflow-ops \
+        tensorflow-records \
+        tensorflow-records-conduit \
+        tensorflow-test \
+        tensorflow-opgen \
+        tensorflow-logging
 
-### Generate default config
-#RUN stack exec jupyter -- notebook --generate-config
-#### Config written to /root/.jupyter/jupyter_notebook_config.py
 
-### Configure
-#### c.NotebookApp.password_required = True and
-#### c.KernelManager.autorestart = True
-#### give in Tensorflow Python 2.7:
-#### Unexpected error Encountered error: 500 Server Error: Internal Server Error ("Unknown instruction: C.NOTEBOOKAPP.PASSWORD_REQUIRED")
+## Activate IHaskell Stack
+RUN ihaskell install --stack
 
-## Run Jupyter server
+
+## Open port for Jupyter/IHaskell server
 EXPOSE 8888
-WORKDIR "$HOME"/git
+
+
+## Run Jupyter/IHaskell server
 CMD stack exec jupyter -- notebook --allow-root
