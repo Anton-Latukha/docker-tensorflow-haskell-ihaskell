@@ -1,17 +1,22 @@
 FROM tensorflow/tensorflow:latest-devel-py3
 MAINTAINER Anton Latukha <anton.latukha+docker@gmail.com>
+
+
 ## Set user-wide PATH Haskell Stack packages
 ENV DEBIAN_FRONTEND=noninteractive \
     PATH=/root/.local/bin:"$PATH"
 
-RUN apt-get update
+
+RUN apt update
+
 
 ## Install Stack with its dependencies
 RUN curl -sSL https://get.haskellstack.org/ | sh
 
+
 ## IHaskell
 ### Install IHaskell system package dependencies
-RUN apt-get install -y \
+RUN apt install -y \
         python3-pip git \
         libtinfo-dev \
         libzmq3-dev \
