@@ -8,15 +8,17 @@ Dids:
 
 
 TODO:
-* Document images.
-* Document usage of images.
-* Document building HOWTO.
-* "Spring cleaning".
+* Document cpu, gpu, cpu-adv, gpu-adv images.
+* Document usage of cpu, gpu, cpu-adv, gpu-adv images.
+* HOWTO building cpu, gpu, cpu-adv, gpu-advimages.
+* "Spring cleaning" in the way.
 * Finish securing advanced image, and decide how to integrate its part to repository.
 * Dynamic inventory for Ansible AWS playbook
 * Make further AWS integration (maybe migrate whole process to AWS)
 (possibility * Split to two versions, OSS and ADV)
 (moved forward in * Make a process to produce same platform&optimization binaries, without exposing access to private repos or code in them)
+* Clean Docker Hub storage.
+* Write README.md
 * Make  further possible optimizations of execution
 * Submit PR to IHaskell with real installation instructions
 * Ask IHaskell: How it is that their Dockerfile got completely different from README.md installation
