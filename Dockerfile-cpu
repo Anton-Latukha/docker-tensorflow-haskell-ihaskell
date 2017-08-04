@@ -1,11 +1,16 @@
 FROM tensorflow/tensorflow:latest-devel-py3
 MAINTAINER Anton Latukha <anton.latukha+docker@gmail.com>
-# Set user-wide PATH Haskell Stack packages
+## Set user-wide PATH Haskell Stack packages
 ENV DEBIAN_FRONTEND=noninteractive \
     PATH=/root/.local/bin:"$PATH"
 
-## IHaskell dependencies
 RUN apt-get update
+
+## Install Stack with its dependencies
+RUN curl -sSL https://get.haskellstack.org/ | sh
+
+## IHaskell
+### Install IHaskell system package dependencies
 RUN apt-get install -y \
         python3-pip git \
         libtinfo-dev \
@@ -16,11 +21,8 @@ RUN apt-get install -y \
         libblas-dev \
         liblapack-dev
 
-## Stack
-RUN curl -sSL https://get.haskellstack.org/ | sh
 WORKDIR "$HOME"/git
 
-## IHaskell
 RUN git clone --depth 1 https://github.com/gibiansky/IHaskell.git
 WORKDIR "$HOME"/git/IHaskell
 RUN pip3 install -r requirements.txt
