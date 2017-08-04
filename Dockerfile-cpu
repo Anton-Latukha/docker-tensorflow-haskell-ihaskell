@@ -58,7 +58,20 @@ RUN curl -O -L \
     ldconfig
 
 
-RUN stack install --ghc-options=-O2 snappy snappy-framing tensorflow-proto tensorflow tensorflow-core-ops tensorflow-ops tensorflow-records tensorflow-records-conduit tensorflow-test tensorflow-opgen tensorflow-logging
+### Install Tensorflow Haskell dependencies and bindings itself
+RUN stack install --ghc-options=-O2 \
+        snappy \
+        snappy-framing \
+        tensorflow-proto \
+        tensorflow \
+        tensorflow-core-ops \
+        tensorflow-ops \
+        tensorflow-records \
+        tensorflow-records-conduit \
+        tensorflow-test \
+        tensorflow-opgen \
+        tensorflow-logging
+
 
 ### Activate IHaskell Stack
 RUN stack exec ihaskell -- install --stack
