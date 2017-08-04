@@ -1,5 +1,6 @@
 FROM tensorflow/tensorflow:latest-devel-py3
 MAINTAINER Anton Latukha <anton.latukha+docker@gmail.com>
+# Set user-wide PATH Haskell Stack packages
 ENV DEBIAN_FRONTEND=noninteractive \
     PATH=/root/.local/bin:"$PATH"
 
