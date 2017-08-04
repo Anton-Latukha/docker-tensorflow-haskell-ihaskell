@@ -47,14 +47,14 @@ RUN apt install -y \
 
 ### Install protobuf & libtensorlow-gpu
 ENV PROTOBUF_V=3.3.0 \
-    LIBTFLOWCPU_V=1.0.0
+    LIBTFLOWGPU_V=1.0.0
 RUN apt install -y unzip
 RUN curl -O -L \
     https://github.com/google/protobuf/releases/download/v"$PROTOBUF_V"/protoc-"$PROTOBUF_V"-linux-x86_64.zip && \
     unzip -d /usr/local protoc-"$PROTOBUF_V"-linux-x86_64.zip bin/protoc && \
     rm /usr/local protoc-"$PROTOBUF_V"-linux-x86_64.zip && \
     chmod 755 /usr/local/bin/protoc && \
-    curl -L https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-gpu-linux-x86_64-"$LIBTFLOWCPU_V".tar.gz | tar -xz -C /usr/local && \
+    curl -L https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-gpu-linux-x86_64-"$LIBTFLOWGPU_V".tar.gz | tar -xz -C /usr/local && \
     ldconfig
 
 

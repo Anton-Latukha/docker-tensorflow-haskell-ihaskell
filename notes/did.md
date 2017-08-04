@@ -1,4 +1,12 @@
 9.
+Dids:
+* major rewrite of Dockerfile's
+* cleaning of Dockerfile's
+* commenting the installation process of Dockerfile's
+* found couple of issues
+* Fx GPU image was using libtensorflow-cpu-linux library. Now is right library.
+
+
 TODO:
 * Document images.
 * Document usage of images.
