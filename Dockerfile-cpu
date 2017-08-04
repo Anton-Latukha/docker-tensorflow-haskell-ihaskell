@@ -73,8 +73,9 @@ RUN stack install --ghc-options=-O2 \
         tensorflow-logging
 
 
-### Activate IHaskell Stack
-RUN stack exec ihaskell -- install --stack
+## Activate IHaskell Stack
+RUN ihaskell install --stack
+
 
 ## Jupyter
 
