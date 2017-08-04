@@ -81,5 +81,4 @@ RUN ihaskell install --stack
 EXPOSE 8888
 
 
-WORKDIR "$HOME"/git
 CMD stack exec jupyter -- notebook --allow-root
