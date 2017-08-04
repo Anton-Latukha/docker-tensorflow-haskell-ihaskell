@@ -36,17 +36,15 @@ RUN stack install --ghc-options=-O2 gtk2hs-buildtools
 RUN stack install --ghc-options=-O2
 
 
-### Install Tensorflow bindings & it's deps (https://github.com/tensorflow/haskell)
-WORKDIR "$HOME"/git/IHaskell
-RUN apt-get install -y \
-    # Required by snappy-frames dependency.
+## Tensorflow bindings
+### Install system package dependencies (https://github.com/tensorflow/haskell)
+RUN apt install -y \
     libsnappy-dev \
-    # Avoids /usr/bin/ld: cannot find -ltinfo
     libncurses5-dev \
-    # Makes stack viable in the container
     libgmp-dev \
-    # Required for locales configuration.
     locales
+
+
 RUN apt-get install unzip
 ENV PROTOBUF_V=3.3.0 \
     LIBTFLOWCPU_V=1.0.0
