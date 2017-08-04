@@ -26,14 +26,15 @@ RUN apt install -y \
         libblas-dev \
         liblapack-dev
 
-WORKDIR "$HOME"/git
 
-RUN git clone --depth 1 https://github.com/gibiansky/IHaskell.git
-WORKDIR "$HOME"/git/IHaskell
+### Get IHaskell code, setup GHC, compile&install IHaskell Haskell dependencies, and then compile&install IHaskell itself
+WORKDIR /root/IHaskell
+RUN git clone --depth 1 https://github.com/gibiansky/IHaskell.git .
 RUN pip3 install -r requirements.txt
 RUN stack setup
 RUN stack install --ghc-options=-O2 gtk2hs-buildtools
 RUN stack install --ghc-options=-O2
+
 
 # ## Tensorflow
 # RUN apt-get install -y libcupti-dev
