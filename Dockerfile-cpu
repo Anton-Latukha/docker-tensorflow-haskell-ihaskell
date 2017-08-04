@@ -36,18 +36,6 @@ RUN stack install --ghc-options=-O2 gtk2hs-buildtools
 RUN stack install --ghc-options=-O2
 
 
-# ## Tensorflow
-# RUN apt-get install -y libcupti-dev
-# 
-# ### Using virtualenv
-# RUN apt-get install -y python3-pip python3-dev python-virtualenv
-# RUN virtualenv --system-site-packages -p python3 "$HOME"/tensorflow
-# WORKDIR "$HOME"/tensorflow
-# RUN /bin/bash -c 'source "$HOME"/tensorflow/bin/activate'
-# 
-# ### Using CPU
-# RUN /bin/bash -c 'pip3 install --upgrade tensorflow'
-
 ### Install Tensorflow bindings & it's deps (https://github.com/tensorflow/haskell)
 WORKDIR "$HOME"/git/IHaskell
 RUN apt-get install -y \
