@@ -7,7 +7,7 @@ Environment variables:
 (required)
 * `PASSWORD` - set password to connect to Jupyter Notebook
 (optional)
-* `PORT` - set port for jupyter inside container
+* `PORT` - set port for Jupyter inside container
 
 ## GPU
 

@@ -5,6 +5,8 @@ Dids:
 * commenting the installation process of Dockerfile's
 * found couple of issues
 * Fx GPU image was using libtensorflow-cpu-linux library. Now is right library.
+* Researching Ansible/AWS
+* Writing Ansible playbook
 
 
 TODO:
