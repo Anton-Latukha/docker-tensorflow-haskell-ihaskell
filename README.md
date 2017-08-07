@@ -1,5 +1,8 @@
 # docker-tensorflow-haskell-ihaskell
-Image for convenient development with Tensorflow + Haskell/IHaskell
+Images for convenient development for Tensorflow + Haskell/IHaskell.
+Has open source `gpu`, `cpu` versions, and closed source `adv-gpu`, `adv-cpu`.
+Uses Jupyter notebooks, IHaskell environment and Haskell Tensorflow bindings.
+
 
 ## Environment
 
